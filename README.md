@@ -50,11 +50,3 @@ Please refer to [`LICENSE.md`](LICENSE.md) for full terms.
   <sub>Template created by UNIT Electronics • Adapt this file to document your board!</sub>
 </div>
 
-### ✅ What You Can Do with This Template:
-
-* Fork it for new development board projects.
-* Fill in specs, pinout, and MCU details.
-* Add images, schematics, and test code.
-
-
-Would you like a downloadable `.zip` of this full structure including placeholder images and files (`hardware/`, `docs/`, `firmware/`, etc.)?
