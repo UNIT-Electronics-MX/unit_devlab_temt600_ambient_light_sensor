@@ -75,6 +75,10 @@ jobs:
         # Permitir archivos especiales en GitHub Pages
         touch docs/.nojekyll
 
+
+        
+    - name: Reset working directory
+      run: git reset --hard HEAD
     #################################################
     # Publicar cambios a la rama main
     #################################################
