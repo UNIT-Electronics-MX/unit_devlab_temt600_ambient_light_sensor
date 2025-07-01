@@ -31,7 +31,7 @@ Include a diagram like `docs/pinout.png` or describe functionally:
 ## 📃 Topology
 
 <div align="center">
-<a href="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png"><img src="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png" width="500px"><br/> Topology</a>
+<a href="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png"><img src="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png" width="300px"><br/> Topology</a>
 
 | Ref. | Description                              |
 |------|------------------------------------------|
