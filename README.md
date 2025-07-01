@@ -2,8 +2,7 @@
 # UNIT TEMT600 Ambient Light Sensor Development Board
 
 <div align="center">
-  <img src="hardware/resources/unit_top_v_1_0_0_temt600_ambient_light_sensor.png" width="450px" alt="Development Board">
-  <p><em>[Replace with board name or logo]</em></p>
+  <img src="hardware/resources/unit_top_V_0_0_1_ue0098_TEMT6000.png" width="450px" alt="Development Board">
 </div>
 
 ## 📦 Overview
