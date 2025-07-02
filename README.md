@@ -1,9 +1,11 @@
 
-# UNIT TEMT600 Ambient Light Sensor Development Board
+# TEMT600 Ambient Light Sensor
 
 <div align="center">
-  <img src="hardware/resources/unit_top_V_0_0_1_ue0098_TEMT6000.png" width="450px" alt="Development Board">
+  <img src="hardware/resources/unit_top_V_0_0_1_ue0098_TEMT6000.png" width="500px" alt="Development Board">
 </div>
+
+The **TEMT600 Ambient Light Sensor Development Board** is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring.
 
 ## 📦 Overview
 
@@ -16,6 +18,12 @@
 
 ## 🧪 Use Cases
 
+- Automatic display brightness adjustment  
+- Photographic light metering  
+- Smart home & IoT light sensing  
+- Plant/garden lighting control  
+- Wearable/light-level logging  
+- Data-logging & environmental sensing
 
 ## 🚀 Getting Started
 
