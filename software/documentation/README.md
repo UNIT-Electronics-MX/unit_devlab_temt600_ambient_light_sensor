@@ -14,7 +14,7 @@ Fill in each section without deleting or modifying the existing headings.
 
 # TEMT600 Ambient Light Sensor
 
-![product](./images/top.png) <!-- FILL HERE: replace image if needed -->
+![product](../../hardware/resources/unit_top_V_0_0_1_ue0098_TEMT6000.png) <!-- FILL HERE: replace image if needed -->
 
 ## Introduction
 
@@ -81,7 +81,7 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 
 ## Block Diagram
 
-![Function Diagram](images/pinout.png) <!-- FILL HERE: replace image if needed -->
+![Function Diagram](../../hardware/resources/unit_pinout_v_0_0_1_ue0098_temt600_ambient_light_sensor_en.png) <!-- FILL HERE: replace image if needed -->
 
 ## Dimensions
 

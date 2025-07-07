@@ -1,6 +1,6 @@
 # Hardware
 <div align="center">
-    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="resources/Schematics_icon.jpg?raw=false" width="450px" alt="Schematics"/><br/> Schematics</a>
+    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="resources/img/Schematics_icon.jpg?raw=false" width="450px" alt="Schematics"/><br/> Schematics</a>
 </div>
 
 ---
@@ -20,11 +20,9 @@
 
 ## 🔌 Pinout
 
-Include a diagram like `docs/pinout.png` or describe functionally:
 <div align="center">
-    <img src="docs/pinout.png" alt="Pinout Diagram" width="500px"/>
-
-<br/>
+    <a href="#"><img src="resources/unit_pinout_v_0_0_1_ue0098_temt600_ambient_light_sensor_en.jpg" width="500px"><br/>Pinout</a>
+    <br/><br/>
 
 | Pin Label | Function        | Notes                             |
 |-----------|-----------------|-----------------------------------|
