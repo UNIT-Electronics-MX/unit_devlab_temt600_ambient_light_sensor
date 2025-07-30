@@ -6,7 +6,27 @@
 ---
 
 
+## KEY TECHNICAL SPECIFICATIONS
+
+<!-- 
+========================================
+EDITABLE SPECIFICATIONS TEMPLATE
+========================================
+Edita los valores a continuación según necesites.
+El formato se mantendrá automáticamente en el PDF generado.
+-->
+
+### 🔌 CONNECTIVITY (Conectividad)
+<!-- Edita las interfaces y conectores disponibles -->
+| Interface | Details |
+|-----------|---------|
+| **Primary Interface** | GPIO (Analog) |
+| **Connector Type** | JST 4-pin 1.0mm |
+| **Logic Levels** | VCC |
+
+
 ## ⚙️ Technical Specifications
+
 <div align="center">
 
 | Pin | Symbol | Type     | Description                                                                 |
