@@ -1,4 +1,4 @@
-# Qwiic Light Sensor Digital Reader
+# Ambient Light Sensor
 
 This project demonstrates how to use an ambient light sensor in digital mode with an Arduino-compatible board (Pulsar ESP32 C6) or micropython-compatible board (DualMCU) to detect light presence and print its status via the Serial Monitor.
 
