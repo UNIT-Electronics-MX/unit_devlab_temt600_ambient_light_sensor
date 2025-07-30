@@ -38,9 +38,9 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 
 ## 📚 Resources
 
-- [Schematic Diagram](hardware/schematic.pdf)
+- [Schematic Diagram](hardware/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf)
 - [Board Dimensions (DXF)](docs/dimensions.dxf)
-- [Pinout Diagram](docs/pinout.png)
+- [Pinout Diagram](hardware/resources/unit_pinout_v_0_0_1_ue0098_temt600_ambient_light_sensor_en.jpg)
 - [Firmware Examples](firmware/)
 - [Getting Started Guide](docs/getting_started.md)
 
