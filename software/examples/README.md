@@ -12,11 +12,9 @@ This guide explains how to use a TEMT6000 ambient light sensor with an Arduino-c
 
 ## Wiring Instructions
 
-| Sensor Pin | Connects To | Description                           |
-|------------|-------------|---------------------------------------|
-| VCC        | 5 V         | Match your board’s logic level        |
-| GND        | GND         | Common ground                         |
-| SIG        | GPIO12      | Digital input on the microcontroller  |
+- **VCC**: Connect to **5 V** (match your board’s logic level)
+- **GND**: Connect to **GND** (common ground)
+- **SIG**: Connect to **GPIO12** (digital input on the microcontroller)
 
 ## Software Setup
 
