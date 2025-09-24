@@ -1,68 +1,74 @@
-# Ambient Light Sensor
+# Ambient Light Sensor Example
 
-This project demonstrates how to use an ambient light sensor in digital mode with an Arduino-compatible board (Pulsar ESP32 C6) or micropython-compatible board (DualMCU) to detect light presence and print its status via the Serial Monitor.
+This guide explains how to use a TEMT6000 ambient light sensor with an Arduino-compatible board (such as the Pulsar ESP32 C6) or a MicroPython-compatible board (such as the DualMCU) to detect light and display its status via the Serial Monitor.
 
 ---
 
 ## Hardware Requirements
 
-- **Board:** ESP32 
-- **Sensor module:** TEMT6000 Qwiic Ambient Light Sensor
-- **Cables:** JST connector
+- **Microcontroller Board:** ESP32 or compatible
+- **Sensor:** TEMT6000 Qwiic Ambient Light Sensor
+- **Cabling:** JST connector
 
-## Wiring
+## Wiring Instructions
 
-| Sensor Pin | Board Pin    | Notes                                 |
-| ---------- | ------------ | ------------------------------------- |
-| VCC        | 5 V          | According to your board’s logic level |
-| GND        | GND          | Common ground                         |
-| SIG        | GPIO12       | Connect to digital input on board     |
+| Sensor Pin | Connects To | Description                           |
+|------------|-------------|---------------------------------------|
+| VCC        | 5 V         | Match your board’s logic level        |
+| GND        | GND         | Common ground                         |
+| SIG        | GPIO12      | Digital input on the microcontroller  |
 
 ## Software Setup
 
-1. **Install Arduino IDE or Thonny IDE**
-2. **Open a new sketch** and paste the code from `light_sensor.ino` or `light_sensor.py` (provided).
-3. **Upload** the sketch to your board.
-4. **Open Serial Monitor** at **115200** baud to view output.
+1. **Install** the Arduino IDE or Thonny IDE.
+2. **Create a new project** and paste the code from `light_sensor.ino` (Arduino) or `light_sensor.py` (MicroPython).
+3. **Upload** the code to your board.
+4. **Open the Serial Monitor** at **115200** baud to view sensor output.
 
-## Usage Instructions
+## How to Use
 
-1. **Power on** the board with the uploaded sketch running.
-2. **Observe** the Serial Monitor:
-   - When the sensor detects sufficient light, you should see:
-     ```
-     🔆 Light detected (HIGH)
-     ```
-   - In darkness or low light, you should see:
-     ```
-     🌑 No light (LOW)
-     ```
-3. **Test:**
-   - Bring a flashlight or lamp close to the sensor’s photodiode.
-   - Cover the sensor with your hand or block light to see the alternate message.
+1. **Power up** the board with the uploaded code.
+2. **Check the Serial Monitor** for messages:
+  - If light is detected:
+    ```
+    🔆 Light detected (HIGH)
+    ```
+  - If no light is detected:
+    ```
+    🌑 No light (LOW)
+    ```
+3. **Testing:**
+  - Shine a flashlight or lamp on the sensor to trigger the "HIGH" message.
+  - Cover the sensor to trigger the "LOW" message.
 
 ## Troubleshooting
 
-- **Always reads LOW:**
+- **Sensor always reads LOW:**
+  - Confirm `SIG` is connected to GPIO12.
+  - Ensure the sensor is powered (VCC and GND connected).
 
-  - Verify `SIG` is wired to GPIO12.
-  - Ensure the sensor module is powered (VCC/GND).
+- **Sensor always reads HIGH:**
+  - The sensor may be exposed to constant light; try testing in a darker area.
+  - Check for wiring issues such as floating or pulled-up pins.
 
-- **Always reads HIGH:**
+- **No output in Serial Monitor:**
+  - Verify the Serial Monitor is set to **115200** baud.
+  - Ensure the code initializes serial communication at the same baud rate.
 
-  - Sensor may be permanently illuminated by ambient light; test in darker environment.
-  - Check for accidental pull-up or floating pin issues.
+---
 
-- **No Serial Output:**
+## Technical Notes
 
-  - Confirm Serial Monitor is at **115200** baud.
-  - Ensure `Serial.begin(115200);` matches the monitor setting.
+- The TEMT6000 outputs an analog voltage proportional to light intensity. Reading this value requires an ADC-capable pin.
+- On ESP32, not all pins support ADC. Common ADC pins include GPIO34, GPIO35, GPIO36, and GPIO39. Check your board’s documentation to ensure compatibility.
+- On RP2040 (Raspberry Pi Pico), only GPIO26–28 support ADC.
+- Functions like `atten()` and `width()` are specific to ESP32; they are ignored on other platforms.
 
 ---
 
 ### License & Credits
 
-- **Code**: MIT License
-- **Sensor**: TEMT6000 Ambient Light Sensor
-- **Developed by**: UNIT Electronics
+- **Code:** MIT License
+- **Sensor:** TEMT6000 Ambient Light Sensor
+- **Developed by:** UNIT Electronics
 
