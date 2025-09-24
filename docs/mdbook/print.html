@@ -317,6 +317,52 @@ El formato se mantendrá automáticamente en el PDF generado.
 <div style="break-before: page; page-break-before: always;"></div><h1 id="examples"><a class="header" href="#examples">Examples</a></h1>
 <h2 id="arduinoc-examples"><a class="header" href="#arduinoc-examples">Arduino/C++ Examples</a></h2>
 <p>The following examples demonstrate various features of this development board.</p>
+<h3 id="-light_sensor"><a class="header" href="#-light_sensor">⚡ light_sensor</a></h3>
+<pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+
+const int SENSOR_PIN = 12;  // GPIO12 connected to the module’s digital output
+
+void setup() {
+  // Initialize Serial at 115200 baud
+  Serial.begin(115200);
+  while (!Serial) { }  // Wait for Serial (on some boards)
+
+  // Configure GPIO12 as digital input with internal pull-down
+  pinMode(SENSOR_PIN, INPUT_PULLDOWN);
+
+  Serial.println("Reading Qwiic module in digital mode (GPIO12)...");
+}
+
+void loop() {
+  int state = digitalRead(SENSOR_PIN);  // Read 0 (LOW) or 1 (HIGH)
+
+  if (state == HIGH) {
+    Serial.println("🔆 Light detected (HIGH)");
+</code></pre>
+<p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/c/light_sensor.ino">📄 Ver código completo en GitHub</a></p>
+<h2 id="micropython-examples"><a class="header" href="#micropython-examples">MicroPython Examples</a></h2>
+<p>The following MicroPython examples demonstrate usage with microcontrollers.</p>
+<h3 id="-light_sensor-1"><a class="header" href="#-light_sensor-1">🐍 light_sensor</a></h3>
+<pre><code class="language-python">from machine import Pin
+import time
+
+# --- DIGITAL INPUT CONFIGURATION ---
+# Use GPIO12 as a digital input with internal pull-down
+sensor_digital = Pin(12, Pin.IN, Pin.PULL_DOWN)
+
+print("Reading Qwiic module in digital mode (GPIO12)...")
+
+while True:
+    state = sensor_digital.value()  # 0 = LOW, 1 = HIGH
+    if state:
+        print("🔆 Light detected (HIGH)")
+    else:
+        print("🌑 No light (LOW)")
+    time.sleep(0.5)
+
+
+</code></pre>
+<p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/micropython/light_sensor.py">📄 Ver código completo en GitHub</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="datasheet--documentation"><a class="header" href="#datasheet--documentation">Datasheet &amp; Documentation</a></h1>
 <h2 id="-professional-datasheet"><a class="header" href="#-professional-datasheet">📄 Professional Datasheet</a></h2>
 <p>Complete technical specifications and professional documentation.</p>
@@ -325,7 +371,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 <h2 id="-additional-resources"><a class="header" href="#-additional-resources">🔗 Additional Resources</a></h2>
 <h3 id="hardware-resources"><a class="header" href="#hardware-resources">Hardware Resources</a></h3>
 <ul>
-<li>🔌 <a href="resources/unit_sch_v_0_0_1_ue0081_Jun-R3.pdf">Schematic Diagram</a> - Complete circuit schematic</li>
+<li>🔌 <a href="resources/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf">Schematic Diagram</a> - Complete circuit schematic</li>
 <li>📐 <a href="hardware/dimensions.html">Board Dimensions</a> - Physical specifications</li>
 <li>🔧 <a href="hardware/pinout.html">Pinout Reference</a> - Pin configuration details</li>
 </ul>
@@ -343,10 +389,10 @@ El formato se mantendrá automáticamente en el PDF generado.
 <div class="table-wrapper"><table><thead><tr><th>Resource Type</th><th>Description</th><th>Link</th></tr></thead><tbody>
 <tr><td>📄 <strong>Datasheet (HTML)</strong></td><td>Interactive technical specs</td><td><a href="../datasheet_professional.html" target="_blank">View</a></td></tr>
 <tr><td>📄 <strong>Datasheet (PDF)</strong></td><td>Downloadable technical specs</td><td><a href="../datasheet_professional.pdf" target="_blank">PDF</a></td></tr>
-<tr><td>🔌 <strong>Schematic</strong></td><td>Circuit diagram</td><td><a href="resources/unit_sch_v_0_0_1_ue0081_Jun-R3.pdf" target="_blank">PDF</a></td></tr>
-<tr><td>� <strong>Dimensions</strong></td><td>Board measurements</td><td><a href="hardware/dimensions.html">View</a></td></tr>
+<tr><td>🔌 <strong>Schematic</strong></td><td>Circuit diagram</td><td><a href="resources/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf" target="_blank">PDF</a></td></tr>
+<tr><td>📐 <strong>Dimensions</strong></td><td>Board measurements</td><td><a href="hardware/dimensions.html">View</a></td></tr>
 <tr><td>🔧 <strong>Pinout</strong></td><td>Pin configuration</td><td><a href="hardware/pinout.html">View</a></td></tr>
-<tr><td>�💻 <strong>Examples</strong></td><td>Code samples</td><td><a href="software/examples.html">View</a></td></tr>
+<tr><td>💻 <strong>Examples</strong></td><td>Code samples</td><td><a href="software/examples.html">View</a></td></tr>
 <tr><td>🔧 <strong>Setup Guide</strong></td><td>Getting started</td><td><a href="software/getting-started.html">View</a></td></tr>
 </tbody></table>
 </div>
