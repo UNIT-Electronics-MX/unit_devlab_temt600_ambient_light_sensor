@@ -328,7 +328,7 @@ The following examples demonstrate various features of this development board.
     github_url = get_github_repo_url()
     
     if c_example_dir.exists():
-        # Look for .ino files directly in c/ directory
+        # First, look for .ino files directly in the c/ directory (current structure)
         for code_file in c_example_dir.glob("*.ino"):
             try:
                 code_content = code_file.read_text(encoding='utf-8', errors='ignore')
@@ -356,7 +356,7 @@ The following examples demonstrate various features of this development board.
             except Exception as e:
                 continue
         
-        # Also look for .ino files in subdirectories (for backward compatibility)
+        # Then look for .ino files in subdirectories (backward compatibility)
         for example_dir in c_example_dir.iterdir():
             if example_dir.is_dir():
                 for code_file in example_dir.rglob("*.ino"):
@@ -388,9 +388,9 @@ The following examples demonstrate various features of this development board.
                         continue
     
     # Process MicroPython examples
-    python_example_dir = Path.cwd() / "software" / "examples" / "micropython"
+    micropython_example_dir = Path.cwd() / "software" / "examples" / "micropython"
     
-    if python_example_dir.exists():
+    if micropython_example_dir.exists():
         examples_content += """
 
 ## MicroPython Examples
@@ -400,7 +400,7 @@ The following MicroPython examples demonstrate usage with microcontrollers.
 """
         
         # Look for .py files in micropython directory
-        for code_file in python_example_dir.glob("*.py"):
+        for code_file in micropython_example_dir.glob("*.py"):
             try:
                 code_content = code_file.read_text(encoding='utf-8', errors='ignore')
                 
@@ -426,36 +426,45 @@ The following MicroPython examples demonstrate usage with microcontrollers.
 """
             except Exception as e:
                 continue
+    
+    # Also check regular python directory for backward compatibility
+    python_example_dir = Path.cwd() / "software" / "examples" / "python"
+    if python_example_dir.exists():
+        if not micropython_example_dir.exists():
+            examples_content += """
+
+## Python Examples
+
+The following Python examples demonstrate usage with the sensor.
+
+"""
         
-        # Also check regular python directory for backward compatibility
-        alt_python_dir = Path.cwd() / "software" / "examples" / "python"
-        if alt_python_dir.exists():
-            for code_file in alt_python_dir.glob("*.py"):
-                try:
-                    code_content = code_file.read_text(encoding='utf-8', errors='ignore')
-                    
-                    # Extract first 20 lines as preview
-                    lines = code_content.split('\n')
-                    preview_lines = lines[:20]
-                    preview = '\n'.join(preview_lines)
-                    
-                    # Generate GitHub link if repository URL is available
-                    code_link = ""
-                    if github_url:
-                        relative_path = f"software/examples/python/{code_file.name}"
-                        code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
-                    else:
-                        code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
-                    
-                    examples_content += f"""### 🐍 {code_file.stem}
+        for code_file in python_example_dir.glob("*.py"):
+            try:
+                code_content = code_file.read_text(encoding='utf-8', errors='ignore')
+                
+                # Extract first 20 lines as preview
+                lines = code_content.split('\n')
+                preview_lines = lines[:20]
+                preview = '\n'.join(preview_lines)
+                
+                # Generate GitHub link if repository URL is available
+                code_link = ""
+                if github_url:
+                    relative_path = f"software/examples/python/{code_file.name}"
+                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                else:
+                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                
+                examples_content += f"""### 🐍 {code_file.stem}
 ```python
 {preview}
 ```
 {code_link}
 
 """
-                except Exception as e:
-                    continue
+            except Exception as e:
+                continue
     
     # Add default message if no examples found
     if examples_content == "# Examples\n\n## Arduino/C++ Examples\n\nThe following examples demonstrate various features of the UNIT JUN R3 Development Board.\n\n":
@@ -465,20 +474,15 @@ The following MicroPython examples demonstrate usage with microcontrollers.
 ```
 software/examples/
 ├── c/
-│   ├── light_sensor.ino        # Direct files (current)
-│   ├── example1/               # Or subdirectories
+│   ├── light_sensor.ino        # Direct files (current structure)
+│   ├── example1/               # Or in subdirectories
 │   │   └── example1.ino
 │   └── example2/
 │       └── example2.ino
-└── micropython/                # Preferred for MicroPython
-    ├── light_sensor.py
-    └── other_example.py
-```
-
-Alternative structure also supported:
-```
-software/examples/
-└── python/                     # Alternative location
+├── micropython/                # Preferred for MicroPython
+│   ├── light_sensor.py
+│   └── other_example.py
+└── python/                     # Alternative Python location
     ├── example1.py
     └── example2.py
 ```
@@ -491,24 +495,24 @@ software/examples/
 
 This section contains Arduino/C++ examples extracted from the software/examples/c/ directory.
 
-If no examples are shown above, please add your Arduino sketch files (.ino) to:
-- software/examples/c/example_name/example_name.ino
+## Supported Structures
+The system detects examples in the following locations:
+- Direct files: `software/examples/c/example_name.ino`
+- Subdirectories: `software/examples/c/example_name/example_name.ino`
 
 The examples will be automatically detected and displayed here.
 """
 
     pages["examples/micropython.md"] = """# MicroPython Examples
 
-This section contains MicroPython examples extracted from the software/examples/micropython/ directory.
+This section contains MicroPython examples extracted from the software/examples/ directory.
 
-If no examples are shown above, please add your Python files (.py) to:
-- software/examples/micropython/example_name.py
+## Supported Structures
+The system detects Python examples in the following locations:
+- Preferred: `software/examples/micropython/example_name.py`
+- Alternative: `software/examples/python/example_name.py`
 
 MicroPython examples will be automatically detected and displayed here.
-
-## Alternative Structure
-The system also supports the traditional structure:
-- software/examples/python/example_name.py
 """
     
     return pages
@@ -537,7 +541,40 @@ No license file found in the repository.
 def create_resources_page() -> str:
     """Create resources page with links to datasheet and documentation."""
     
-    resources_content = """# Datasheet & Documentation
+    # Detect schematic PDF dynamically
+    project_root = Path.cwd()
+    schematic_link = None
+    schematic_filename = None
+    
+    # Search for unit_sch_*.pdf in hardware and hardware/resources directories
+    search_paths = [
+        project_root / "hardware",
+        project_root / "hardware" / "resources"
+    ]
+    
+    for search_path in search_paths:
+        if search_path.exists():
+            for pdf_file in search_path.glob("unit_sch_*.pdf"):
+                schematic_filename = pdf_file.name
+                schematic_link = f"resources/{schematic_filename}"
+                break
+        if schematic_link:
+            break
+    
+    # Build hardware resources section
+    hardware_resources_section = "### Hardware Resources\n"
+    
+    if schematic_link and schematic_filename:
+        hardware_resources_section += f"- 🔌 [Schematic Diagram]({schematic_link}) - Complete circuit schematic\n"
+    else:
+        hardware_resources_section += "- 🔌 Schematic Diagram - Not found (looking for unit_sch_*.pdf)\n"
+    
+    hardware_resources_section += """- 📐 [Board Dimensions](hardware/dimensions.md) - Physical specifications
+- 🔧 [Pinout Reference](hardware/pinout.md) - Pin configuration details
+
+"""
+    
+    resources_content = f"""# Datasheet & Documentation
 
 ## 📄 Professional Datasheet
 
@@ -549,12 +586,7 @@ Complete technical specifications and professional documentation.
 
 ## 🔗 Additional Resources
 
-### Hardware Resources
-- 🔌 [Schematic Diagram](resources/unit_sch_v_0_0_1_ue0081_Jun-R3.pdf) - Complete circuit schematic
-- 📐 [Board Dimensions](hardware/dimensions.md) - Physical specifications
-- 🔧 [Pinout Reference](hardware/pinout.md) - Pin configuration details
-
-### Software Resources
+{hardware_resources_section}### Software Resources
 - 💻 [Getting Started Guide](software/getting-started.md) - Setup and first steps  
 - 📝 [Code Examples](software/examples.md) - Arduino sketches and demos
 - 🛠️ [Development Setup](software/getting-started.md#development-environment) - IDE configuration
@@ -567,17 +599,23 @@ Complete technical specifications and professional documentation.
     if github_url:
         resources_content += f"- 🔗 <a href=\"{github_url}\" target=\"_blank\">Source Code Repository</a> - Complete project files\n"
     
-    resources_content += """
+    # Build Quick Reference table with dynamic schematic link
+    schematic_row = ""
+    if schematic_link and schematic_filename:
+        schematic_row = f'| 🔌 **Schematic** | Circuit diagram | <a href="{schematic_link}" target="_blank">PDF</a> |\n'
+    else:
+        schematic_row = '| 🔌 **Schematic** | Circuit diagram | Not found |\n'
+    
+    resources_content += f"""
 ## 📋 Quick Reference
 
 | Resource Type | Description | Link |
 |---------------|-------------|------|
 | 📄 **Datasheet (HTML)** | Interactive technical specs | <a href="../datasheet_professional.html" target="_blank">View</a> |
 | 📄 **Datasheet (PDF)** | Downloadable technical specs | <a href="../datasheet_professional.pdf" target="_blank">PDF</a> |
-| 🔌 **Schematic** | Circuit diagram | <a href="resources/unit_sch_v_0_0_1_ue0081_Jun-R3.pdf" target="_blank">PDF</a> |
-| � **Dimensions** | Board measurements | [View](hardware/dimensions.md) |
+{schematic_row}| 📐 **Dimensions** | Board measurements | [View](hardware/dimensions.md) |
 | 🔧 **Pinout** | Pin configuration | [View](hardware/pinout.md) |
-| �💻 **Examples** | Code samples | [View](software/examples.md) |
+| 💻 **Examples** | Code samples | [View](software/examples.md) |
 | 🔧 **Setup Guide** | Getting started | [View](software/getting-started.md) |
 
 ---
