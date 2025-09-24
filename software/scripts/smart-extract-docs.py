@@ -328,8 +328,35 @@ The following examples demonstrate various features of this development board.
     github_url = get_github_repo_url()
     
     if c_example_dir.exists():
+        # Look for .ino files directly in c/ directory
+        for code_file in c_example_dir.glob("*.ino"):
+            try:
+                code_content = code_file.read_text(encoding='utf-8', errors='ignore')
+                
+                # Extract first 20 lines as preview
+                lines = code_content.split('\n')
+                preview_lines = lines[:20]
+                preview = '\n'.join(preview_lines)
+                
+                # Generate GitHub link if repository URL is available
+                code_link = ""
+                if github_url:
+                    relative_path = f"software/examples/c/{code_file.name}"
+                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                else:
+                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                
+                examples_content += f"""### ⚡ {code_file.stem}
+```cpp
+{preview}
+```
+{code_link}
+
+"""
+            except Exception as e:
+                continue
         
-        # Look for .ino files in subdirectories
+        # Also look for .ino files in subdirectories (for backward compatibility)
         for example_dir in c_example_dir.iterdir():
             if example_dir.is_dir():
                 for code_file in example_dir.rglob("*.ino"):
@@ -360,19 +387,98 @@ The following examples demonstrate various features of this development board.
                     except Exception as e:
                         continue
     
+    # Process MicroPython examples
+    python_example_dir = Path.cwd() / "software" / "examples" / "micropython"
+    
+    if python_example_dir.exists():
+        examples_content += """
+
+## MicroPython Examples
+
+The following MicroPython examples demonstrate usage with microcontrollers.
+
+"""
+        
+        # Look for .py files in micropython directory
+        for code_file in python_example_dir.glob("*.py"):
+            try:
+                code_content = code_file.read_text(encoding='utf-8', errors='ignore')
+                
+                # Extract first 20 lines as preview
+                lines = code_content.split('\n')
+                preview_lines = lines[:20]
+                preview = '\n'.join(preview_lines)
+                
+                # Generate GitHub link if repository URL is available
+                code_link = ""
+                if github_url:
+                    relative_path = f"software/examples/micropython/{code_file.name}"
+                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                else:
+                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                
+                examples_content += f"""### 🐍 {code_file.stem}
+```python
+{preview}
+```
+{code_link}
+
+"""
+            except Exception as e:
+                continue
+        
+        # Also check regular python directory for backward compatibility
+        alt_python_dir = Path.cwd() / "software" / "examples" / "python"
+        if alt_python_dir.exists():
+            for code_file in alt_python_dir.glob("*.py"):
+                try:
+                    code_content = code_file.read_text(encoding='utf-8', errors='ignore')
+                    
+                    # Extract first 20 lines as preview
+                    lines = code_content.split('\n')
+                    preview_lines = lines[:20]
+                    preview = '\n'.join(preview_lines)
+                    
+                    # Generate GitHub link if repository URL is available
+                    code_link = ""
+                    if github_url:
+                        relative_path = f"software/examples/python/{code_file.name}"
+                        code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                    else:
+                        code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                    
+                    examples_content += f"""### 🐍 {code_file.stem}
+```python
+{preview}
+```
+{code_link}
+
+"""
+                except Exception as e:
+                    continue
+    
     # Add default message if no examples found
     if examples_content == "# Examples\n\n## Arduino/C++ Examples\n\nThe following examples demonstrate various features of the UNIT JUN R3 Development Board.\n\n":
         examples_content += """No code examples found. Please add example files to software/examples/ directory.
 
-## Directory Structure Expected:
+## Directory Structure Supported:
 ```
 software/examples/
 ├── c/
-│   ├── example1/
+│   ├── light_sensor.ino        # Direct files (current)
+│   ├── example1/               # Or subdirectories
 │   │   └── example1.ino
 │   └── example2/
 │       └── example2.ino
-└── python/
+└── micropython/                # Preferred for MicroPython
+    ├── light_sensor.py
+    └── other_example.py
+```
+
+Alternative structure also supported:
+```
+software/examples/
+└── python/                     # Alternative location
     ├── example1.py
     └── example2.py
 ```
@@ -391,14 +497,18 @@ If no examples are shown above, please add your Arduino sketch files (.ino) to:
 The examples will be automatically detected and displayed here.
 """
 
-    pages["examples/micropython.md"] = """# Python Examples
+    pages["examples/micropython.md"] = """# MicroPython Examples
 
-This section would contain Python examples if any are found in the software/examples/python/ directory.
+This section contains MicroPython examples extracted from the software/examples/micropython/ directory.
 
-To add Python examples, create files in:
+If no examples are shown above, please add your Python files (.py) to:
+- software/examples/micropython/example_name.py
+
+MicroPython examples will be automatically detected and displayed here.
+
+## Alternative Structure
+The system also supports the traditional structure:
 - software/examples/python/example_name.py
-
-Python examples will be automatically detected and displayed here.
 """
     
     return pages
