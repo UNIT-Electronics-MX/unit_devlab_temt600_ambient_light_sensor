@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Extractor inteligente de contenido que NO duplica títulos
-Extrae SOLO el contenido útil sin alterar los README originales
+Smart content extractor that does NOT duplicate titles.
+Extracts ONLY useful content without altering the original READMEs.
 """
 
 import os
@@ -342,9 +342,9 @@ The following examples demonstrate various features of this development board.
                 code_link = ""
                 if github_url:
                     relative_path = f"software/examples/c/{code_file.name}"
-                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                    code_link = f"[📄 See complete code on GitHub]({github_url}/blob/main/{relative_path})"
                 else:
-                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                    code_link = f"[📄 See complete code on GitHub: {code_file.name}](#{code_file.stem.lower()})"
                 
                 examples_content += f"""### ⚡ {code_file.stem}
 ```cpp
@@ -373,9 +373,9 @@ The following examples demonstrate various features of this development board.
                         if github_url:
                             # Create GitHub blob URL for the file
                             relative_path = f"software/examples/c/{example_dir.name}/{code_file.name}"
-                            code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                            code_link = f"[📄 See complete code on GitHub]({github_url}/blob/main/{relative_path})"
                         else:
-                            code_link = f"[📄 Código completo: {code_file.name}](#{example_dir.name.lower()})"
+                            code_link = f"[📄 See complete code on GitHub: {code_file.name}](#{example_dir.name.lower()})"
                         
                         examples_content += f"""### ⚡ {example_dir.name}: {code_file.name}
 ```cpp
@@ -413,9 +413,9 @@ The following MicroPython examples demonstrate usage with microcontrollers.
                 code_link = ""
                 if github_url:
                     relative_path = f"software/examples/micropython/{code_file.name}"
-                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                    code_link = f"[📄 See complete code on GitHub]({github_url}/blob/main/{relative_path})"
                 else:
-                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                    code_link = f"[📄 See complete code on GitHub: {code_file.name}](#{code_file.stem.lower()})"
                 
                 examples_content += f"""### 🐍 {code_file.stem}
 ```python
@@ -452,9 +452,9 @@ The following Python examples demonstrate usage with the sensor.
                 code_link = ""
                 if github_url:
                     relative_path = f"software/examples/python/{code_file.name}"
-                    code_link = f"[📄 Ver código completo en GitHub]({github_url}/blob/main/{relative_path})"
+                    code_link = f"[📄 See complete code on GitHub]({github_url}/blob/main/{relative_path})"
                 else:
-                    code_link = f"[📄 Código completo: {code_file.name}](#{code_file.stem.lower()})"
+                    code_link = f"[📄 See complete code on GitHub: {code_file.name}](#{code_file.stem.lower()})"
                 
                 examples_content += f"""### 🐍 {code_file.stem}
 ```python
