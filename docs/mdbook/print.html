@@ -211,7 +211,7 @@ Please refer to <a href="LICENSE.html"><code>LICENSE.md</code></a> for full term
   <sub>Template created by UNIT Electronics • Adapt this file to document your board!</sub>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="hardware-overview"><a class="header" href="#hardware-overview">Hardware Overview</a></h1>
 <div align="center">
-    <div align="center"><a href="hardware/../resources/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="hardware/../resources/img/Schematics_icon.jpg?raw=false" style="max-width: 500px; height: auto;" alt="Schematics"><br/> Schematics</a></div>
+    <div align="center"><a href="hardware/../resources/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="hardware/../resources/Schematics_icon.jpg?raw=false" style="max-width: 500px; height: auto;" alt="Schematics"><br/> Schematics</a></div>
 </div>
 <hr />
 <h2 id="key-technical-specifications"><a class="header" href="#key-technical-specifications">KEY TECHNICAL SPECIFICATIONS</a></h2>
@@ -342,6 +342,29 @@ void loop() {
 <p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/c/light_sensor.ino">📄 Ver código completo en GitHub</a></p>
 <h2 id="micropython-examples"><a class="header" href="#micropython-examples">MicroPython Examples</a></h2>
 <p>The following MicroPython examples demonstrate usage with microcontrollers.</p>
+<h3 id="-light_sensor_adc"><a class="header" href="#-light_sensor_adc">🐍 light_sensor_adc</a></h3>
+<pre><code class="language-python">from machine import Pin, ADC
+import time
+
+# Configure GPIO6 as ADC input (ESP32C6)
+light_sensor = ADC(Pin(6))
+
+# Depending on your board, you may need to set attenuation for higher voltage range
+# For ESP32: attenuation can be 0db (0–1V), 2.5db (0–1.34V), 6db (0–2V), 11db (0–3.6V)
+try:
+    light_sensor.atten(ADC.ATTN_11DB)   # Full range ~3.6V
+except:
+    pass  # Some ports (like RP2040) don't need this
+
+# Optionally set resolution (ESP32 defaults to 12 bits → values 0–4095)
+try:
+    light_sensor.width(ADC.WIDTH_12BIT)
+except:
+    pass
+
+while True:
+</code></pre>
+<p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/micropython/light_sensor_adc.py">📄 Ver código completo en GitHub</a></p>
 <h3 id="-light_sensor-1"><a class="header" href="#-light_sensor-1">🐍 light_sensor</a></h3>
 <pre><code class="language-python">from machine import Pin
 import time
