@@ -44,12 +44,16 @@ El formato se mantendrá automáticamente en el PDF generado.
     <a href="#"><img src="resources/unit_pinout_v_0_0_1_ue0098_temt600_ambient_light_sensor_en.jpg" width="500px"><br/>Pinout</a>
     <br/><br/>
 
+</div>
+
+### **Pinout Details**
+
+
 | Pin Label | Function        | Notes                             |
 |-----------|-----------------|-----------------------------------|
 | VCC       | Power Supply    | 3.3V or 5V, depending on design    |
 | GND       | Ground          | Common ground reference            |
 | D0        | Data Signal     | Digital input/output signal        |
-</div>
 
 ## 📏 Dimensions
 
