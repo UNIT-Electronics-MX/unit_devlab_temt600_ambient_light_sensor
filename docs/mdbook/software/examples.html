@@ -178,6 +178,52 @@
                         <h1 id="examples"><a class="header" href="#examples">Examples</a></h1>
 <h2 id="arduinoc-examples"><a class="header" href="#arduinoc-examples">Arduino/C++ Examples</a></h2>
 <p>The following examples demonstrate various features of this development board.</p>
+<h3 id="-light_sensor"><a class="header" href="#-light_sensor">⚡ light_sensor</a></h3>
+<pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+
+const int SENSOR_PIN = 12;  // GPIO12 connected to the module’s digital output
+
+void setup() {
+  // Initialize Serial at 115200 baud
+  Serial.begin(115200);
+  while (!Serial) { }  // Wait for Serial (on some boards)
+
+  // Configure GPIO12 as digital input with internal pull-down
+  pinMode(SENSOR_PIN, INPUT_PULLDOWN);
+
+  Serial.println("Reading Qwiic module in digital mode (GPIO12)...");
+}
+
+void loop() {
+  int state = digitalRead(SENSOR_PIN);  // Read 0 (LOW) or 1 (HIGH)
+
+  if (state == HIGH) {
+    Serial.println("🔆 Light detected (HIGH)");
+</code></pre>
+<p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/c/light_sensor.ino">📄 Ver código completo en GitHub</a></p>
+<h2 id="micropython-examples"><a class="header" href="#micropython-examples">MicroPython Examples</a></h2>
+<p>The following MicroPython examples demonstrate usage with microcontrollers.</p>
+<h3 id="-light_sensor-1"><a class="header" href="#-light_sensor-1">🐍 light_sensor</a></h3>
+<pre><code class="language-python">from machine import Pin
+import time
+
+# --- DIGITAL INPUT CONFIGURATION ---
+# Use GPIO12 as a digital input with internal pull-down
+sensor_digital = Pin(12, Pin.IN, Pin.PULL_DOWN)
+
+print("Reading Qwiic module in digital mode (GPIO12)...")
+
+while True:
+    state = sensor_digital.value()  # 0 = LOW, 1 = HIGH
+    if state:
+        print("🔆 Light detected (HIGH)")
+    else:
+        print("🌑 No light (LOW)")
+    time.sleep(0.5)
+
+
+</code></pre>
+<p><a href="https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/software/examples/micropython/light_sensor.py">📄 Ver código completo en GitHub</a></p>
 
                     </main>
 
