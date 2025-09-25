@@ -229,6 +229,39 @@
             color: #111827;
         }
         
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+        
+        .spec-table td {
+            padding: 6px 12px;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 11pt;
+            vertical-align: top;
+        }
+        
+        .spec-table .spec-label {
+            color: #374151;
+            font-weight: 500;
+            width: 40%;
+        }
+        
+        .spec-table .spec-value {
+            font-weight: bold;
+            color: #111827;
+            width: 60%;
+        }
+        
+        .spec-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .spec-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
         .sub-spec {
             margin-left: 15px;
             font-size: 0.9em;
@@ -2078,6 +2111,68 @@
                 background: white !important;
             }
         }
+        
+        /* HARDWARE SPECIFICATIONS STYLES */
+        .hardware-specifications-page {
+            page-break-before: always;
+            padding: 20mm 15mm;
+            background: white;
+        }
+        
+        .section-page-title {
+            font-size: 28pt;
+            font-weight: 900;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 8mm;
+            letter-spacing: 1px;
+        }
+        
+        .section-page-subtitle {
+            font-size: 12pt;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 15mm;
+            font-style: italic;
+        }
+        
+        .hardware-section {
+            margin-bottom: 8mm;
+            border-left: 3px solid #3498db;
+            padding-left: 4mm;
+        }
+        
+        .hardware-section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 3mm;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .hardware-section-content {
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #34495e;
+        }
+        
+        .spec-item {
+            margin-bottom: 2mm;
+            padding: 1mm 0;
+        }
+        
+        .spec-item strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        @media print {
+            .hardware-specifications-page {
+                page-break-before: always;
+                padding: 15mm 10mm;
+            }
+        }
         </style>
         </head>
         <body>
@@ -2109,12 +2204,7 @@
                 <div class="introduction-section">
                     <h2 class="section-title">Product Overview</h2>
                     <div class="introduction-content">
-            <p>The TEMT600 Ambient Light Sensor Development Board is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.
-### Quick Setup
-<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">
-<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">
-<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">
-<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started"></p>
+            <p>The TEMT600 Ambient Light Sensor Development Board is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.</p>
                     </div>
                 </div>
             
@@ -2143,14 +2233,18 @@
                 
                             <div class="spec-group">
                                 <h4>CONNECTIVITY</h4>
-                                <div class="spec-item">
-                                    <span class="spec-label">Interfaces:</span>
-                                    <span class="spec-value">I²C, SPI</span>
-                                </div>
-                                <div class="spec-item">
-                                    <span class="spec-label">Connector:</span>
-                                    <span class="spec-value">Qwiic + Pin Headers</span>
-                                </div>
+                                <table class="spec-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="spec-label">Interfaces:</td>
+                                            <td class="spec-value">I2C, SPI, UART, ADC</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="spec-label">Connector:</td>
+                                            <td class="spec-value">QWIIC + Pin Headers</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -2233,6 +2327,40 @@
 </table>
                             </div>
                         
+                            <div class="table-container">
+                                <h3 class="table-title">## ⚙️ Technical Specifications</h3>
+                                <table class="professional-table">
+<thead>
+<tr>
+<th>Pin</th>
+<th>Symbol</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>GND</td>
+<td>Power</td>
+<td>Ground reference (connect to MCU GND)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>VCC</td>
+<td>Power</td>
+<td>+3.3 V to +5 V supply voltage</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D0</td>
+<td>Analog</td>
+<td>voltage ∝ ambient light; connect to an ADC input of your MCU</td>
+</tr>
+</tbody>
+</table>
+                            </div>
+                        
                         </div>
                 
         
@@ -2264,6 +2392,23 @@
                                 <div class="components-table-section" style="margin-top: 25px;">
                                     <h3 class="table-title">Component Reference</h3>
                     <table class="professional-table">
+<thead>
+<tr>
+<th>Ref.</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>TEMT6000 Ambient Light Sensor</td>
+</tr>
+<tr>
+<td>J1</td>
+<td>JST 1 mm pitch Connector for Power Supply and Signal</td>
+</tr>
+</tbody>
+</table><table class="professional-table">
 <thead>
 <tr>
 <th>Ref.</th>
@@ -2316,6 +2461,27 @@
                     <div class="components-table-section">
                         <h3 class="table-title">Signal Description</h3>
             <table class="professional-table">
+<thead>
+<tr>
+<th>Function</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power Supply</td>
+<td>3.3V or 5V, depending on design</td>
+</tr>
+<tr>
+<td>Ground</td>
+<td>Common ground reference</td>
+</tr>
+<tr>
+<td>Data Signal</td>
+<td>Digital input/output signal</td>
+</tr>
+</tbody>
+</table><table class="professional-table">
 <thead>
 <tr>
 <th>Function</th>
