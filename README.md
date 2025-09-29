@@ -11,7 +11,6 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 </div>
 
 
-
 <div align="center">
 
 ### Quick Setup
@@ -30,6 +29,12 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 | Feature                 | Description                                                   |
 |------------------------|---------------------------------------------------------------|
 | Sensor Type            | Ambient Light Sensor (TEMT600)                                |
+| Supply Voltage         | 3.3V - 5V                                                     |
+| Interface              | Analog Output                                                 |
+| Light Sensitivity     | 0.2 to 1000 lux (typical)                                     |
+| Response Time          | ~100 ms                                                       |
+| Operating Temperature  | -40°C to +85°C                                                |
+| Connector Type         | JST 1.0mm 4-pin                                       |
 
 
 
