@@ -1,9 +1,9 @@
 
-# TEMT600 Ambient Light Sensor
+# DevLab: TEMT600 Ambient Light Sensor
 
 ## Introduction
 
-The **TEMT600 Ambient Light Sensor Development Board** is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.
+The **DevLab TEMT600 Ambient Light Sensor** is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.
 
 
 <div align="center">
@@ -16,15 +16,16 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 ### Quick Setup
 
 
-[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/mdbook/index.html)
+[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/index.html)
 [<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/datasheet_professional.html)
 [<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
-[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/mdbook/software/getting-started.html)
+[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/software/getting-started.html)
 
 </div>
 
+<div align="center">
 
-## 📦 Overview
+## Overview
 
 | Feature                 | Description                                                   |
 |------------------------|---------------------------------------------------------------|
@@ -37,9 +38,9 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 | Connector Type         | JST 1.0mm 4-pin                                       |
 
 
+</div>
 
-
-## 🧪 Use Cases
+## Use Cases
 
 - Automatic display brightness adjustment  
 - Photographic light metering  
@@ -50,14 +51,11 @@ The **TEMT600 Ambient Light Sensor Development Board** is a compact module built
 
 
 
-## 📚 Resources
+## Resources
 
 - [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/hardware/README.md#hardware)
-- [Board Dimensions (DXF)](https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/hardware/README.md#-dimensions)
 - [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/hardware/README.md#-dimensions)
-- [Firmware Examples](firmware/)
-- [Getting Started Guide](docs/getting_started.md)
-
+- [Datasheet](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/datasheet_professional.html)
 
 
 ## 📝 License
